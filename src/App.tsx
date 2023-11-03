@@ -1,34 +1,83 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [word, setWord] = useState('')
+  const [sum, setSum] = useState(0)
+
+  const [state, setState] = useState<'word' | 'password' | 'result'>('word')
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      {state === 'word' ? (
+        <Stack spacing={2}>
+          <Typography variant="h4">Введите кодовое слово:</Typography>
+          <TextField onChange={(e) => setWord(e.target.value)} value={word} />
+
+          <Button
+            variant="contained"
+            onClick={() => {
+              if (word.toLowerCase() === 'пирог') setState('password')
+            }}
+            id="1"
+          >
+            Подтвердить
+          </Button>
+        </Stack>
+      ) : null}
+      {state === 'password' ? (
+        <Stack spacing={2}>
+          <Typography variant="h4">Сумма</Typography>
+          <TextField
+            onChange={(e) => setSum(Number(e.target.value) || 0)}
+            value={sum}
+          />
+          <Button
+            id="2"
+            onClick={() => {
+              if (sum === 2059) setState('result')
+            }}
+            variant="contained"
+          >
+            Подтвердить
+          </Button>
+        </Stack>
+      ) : null}
+      {state === 'result' ? (
+        <div>
+          <Typography variant="subtitle1">
+            Чтобы получить награду надо сделать следующее:{' '}
+          </Typography>
+          <List>
+            <ListItem>
+              <ListItemIcon>
+                <FiberManualRecordIcon />
+              </ListItemIcon>
+              <ListItemText>Поцеловать Сережу в щечку</ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <FiberManualRecordIcon />
+              </ListItemIcon>
+              <ListItemText>Сказать: "А ты хорош😏"</ListItemText>
+            </ListItem>
+          </List>
+          {/* <Typography></Typography> */}
+          {/* <Typography>Сказать: "А ты хорош😏"</Typography> */}
+        </div>
+      ) : null}
+    </div>
   )
 }
 
