@@ -22,7 +22,7 @@ function App() {
     <div>
       {state === 'word' ? (
         <Stack spacing={2}>
-          <Typography variant="h4">Введите кодовое слово:</Typography>
+          <Typography variant="h4">Введите кодовое слово:123</Typography>
           <TextField onChange={(e) => setWord(e.target.value)} value={word} />
 
           <Button
