@@ -1,4 +1,4 @@
-![CI/CD](https://github.com/dyarleniber/react-workflow-gh-actions/workflows/CI/CD/badge.svg)
+![CI/CD](https://github.com/olchev-sergey/cake-password/workflows/CI/CD/badge.svg)
 
 # React + TypeScript + Vite
 
